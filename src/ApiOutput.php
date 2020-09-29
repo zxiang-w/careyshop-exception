@@ -10,10 +10,6 @@
 
 namespace careyshop;
 
-use think\facade\Config;
-use think\facade\Request;
-use think\Response;
-
 class ApiOutput
 {
     /**
@@ -78,7 +74,7 @@ class ApiOutput
      */
     public static function outResponse($result, $code)
     {
-        if ($result instanceof Response) {
+        if ($result instanceof \think\Response) {
             $header = array_merge($result->getHeader(), self::$header);
             return $result->code($code)->header($header);
         }
@@ -107,14 +103,14 @@ class ApiOutput
             $result = [
                 'status'  => $code,
                 'message' => $error == true ? empty($message) ? '发生未知异常' : $message : 'success',
-                'data' => Config::get('app.empty_result'),
+                'data' => config('app.empty_result'),
             ];
 
             if (!$error) {
-                $result['data'] = !empty($data) ? $data : Config::get('app.empty_result');
+                $result['data'] = !empty($data) ? $data : config('app.empty_result');
             } else {
                 // 状态(非HTTPS始终为200状态,防止运营商劫持)
-                $code = Request::isSsl() ? $code : 200;
+                $code = request()->isSsl() ? $code : 200;
             }
         }
 
