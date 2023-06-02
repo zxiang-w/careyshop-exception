@@ -1,11 +1,11 @@
 {
-    "name": "dnyz520/careyshop-exception",
+    "name": "wzx/careyshop-exception",
     "description": "The CareyShop Exception Package",
     "license": "AGPL-3.0",
     "authors": [
         {
-            "name": "careyshop",
-            "email": "dnyz520@126.com"
+            "name": "wzx",
+            "email": "1031041547@qq.com"
         }
     ],
     "require": {
